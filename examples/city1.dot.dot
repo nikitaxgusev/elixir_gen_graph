@@ -1,0 +1,25 @@
+digraph G {
+
+  size="4,4"
+
+  v0 [label="Moscow",shape="box"]
+  v1 [label="Nizhny Novgorod"]
+  v2 [label="Ekaterinburg"]
+  v3 [label="Kazan"]
+  v4 [label="Rostov"]
+  v5 [label="Saint
+  Peterburg"]
+  v6 [label="Vladimir"]
+  v7 [label="Yakutsk",shape="box",style="filled",color=".7 .3 1.0"]
+
+  v0 -> v1 [weight="8",label="200 r"]
+  v1 -> v2 [label="120 r"]
+  v2 -> v7 [color="red",label="70 r"]
+  v0 -> v3 [style="dotted",label="50 r"]
+  v0 -> v6 [style="bold",label="100 r"]
+  v0 -> v4 [label="133 r"]
+  v2 -> v5 [label="67 r"]
+  v2 -> v6 [label="22 r"]
+  v3 -> v5 [label="333 r"]
+
+}

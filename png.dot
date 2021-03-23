@@ -1,0 +1,11 @@
+digraph G {
+
+  size="4,4"
+
+  v0 [label="dot_1"]
+  v1 [label="dot_2"]
+  v2 [label="dot_3"]
+  v3 [label="dot_4"]
+  v4 [label="dot_5"]
+
+}
