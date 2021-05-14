@@ -1,0 +1,25 @@
+digraph G {
+
+  size="4,4"
+
+  v0 [label="main",shape="box"]
+  v1 [label="parse"]
+  v2 [label="execute"]
+  v3 [label="init"]
+  v4 [label="cleanup"]
+  v5 [label="make a
+  string"]
+  v6 [label="printf"]
+  v7 [label="compare",shape="box",style="filled",color=".7 .3 1.0"]
+
+  v0 -> v1 [weight="8"]
+  v1 -> v2
+  v2 -> v7 [color="red"]
+  v0 -> v3 [style="dotted"]
+  v0 -> v6 [style="bold",label="100 times"]
+  v0 -> v4
+  v2 -> v5
+  v2 -> v6
+  v3 -> v5
+
+}
