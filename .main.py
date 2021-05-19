@@ -2,6 +2,7 @@
 # algorithm for graph coloring
 from graphviz import Digraph
 import sys
+import random
 
 def addEdge(adj, v, w):
     adj[v].append(w)
@@ -12,7 +13,7 @@ def addEdge(adj, v, w):
 
 # Assigns colors (starting from 0) to all
 # vertices and prints the assignment of colors
-def greedyColoring(adj, V, v_list, w_list, edges):
+def greedyColoring(adj, V, v_list, w_list):
     result = [-1] * V
 
     # Assign the first color to first vertex
@@ -51,50 +52,54 @@ def greedyColoring(adj, V, v_list, w_list, edges):
 
     color_for_node=""
     g = Digraph('G')
+
     # Pint the result
     for u in range(V):
-        print("Vertex", u, " --->  Color", result[u])
-        if (result[u] == 0):
-            color_for_node = "red"
-        if (result[u] == 1):
-            color_for_node = "yellow"
-        if (result[u] == 2):
-            color_for_node = "purple"
-        if (result[u] == 3):
-            color_for_node = "blue"
-        if (result[u] == 4):
-            color_for_node = "gray"
-        if (result[u] == 5):
-            color_for_node = "green"
+        color_for_node = color_list[result[u]]
         g.attr('node', style='filled', color=color_for_node)
         g.node(str(u))
-    g.edges(edges)
+
+    for i in range(len(v_list)):
+        suspend = ""
+        arrow = "none"
+        if (isSuspended == "1"):
+            suspend = str(random.randint(0, 10))
+        if (isOriented == "1"):
+            arrow = "normal"
+        g.edge(v_list[i], w_list[i], label = suspend, arrowhead = arrow)
     g.render(filename='g1.dot')
 
 # Driver Code
 if __name__ == '__main__':
-    print("Argument List:", str(sys.argv))
-    n_vertex = sys.argv[1]
-    v_list_arg = sys.argv[2]
-    w_list_arg = sys.argv[3]
-    edges = sys.argv[4]
+    try:
+        isOriented = sys.argv[1]
+        isSuspended = sys.argv[2]
+        n_vertex = sys.argv[3]
+        v_list_arg = sys.argv[4]
+        w_list_arg = sys.argv[5]
+        colors = sys.argv[6]
 
-    v_list_arg = list(v_list_arg)
-    w_list_arg = list(w_list_arg)
-    edges = edges.replace("'", "")
-    edges = edges.replace(" ", "")
-    edges = edges.split(",")
+        v_list_arg = list(v_list_arg.split(","))
+        w_list_arg = list(w_list_arg.split(","))
+        colors = colors.replace("'", "")
+        colors = colors.replace(" ", "")
+        color_list = colors.split(",")
 
-    print(n_vertex)
-    print(v_list_arg)
-    print(w_list_arg)
-    print(edges)
+        print(isOriented)
+        print(isSuspended)
+        print(n_vertex)
+        print(v_list_arg)
+        print(w_list_arg)
+        print(color_list)
+        print("----------------")
 
-    n = int(n_vertex)
-    g1 = [[] for i in range(n)]
+        n = int(n_vertex)
+        g1 = [[] for i in range(n)]
 
-    for i in range(n+1):
-        g1 = addEdge(g1, int(v_list_arg[i]), int(w_list_arg[i]))
-    print("Coloring of graph 1 ")
-    greedyColoring(g1, n, v_list_arg, w_list_arg, edges)
+        for i in range(n+1):
+            g1 = addEdge(g1, int(v_list_arg[i]), int(w_list_arg[i]))
+
+        greedyColoring(g1, n, v_list_arg, w_list_arg)
+    except BaseException:
+        print ("Wrong parameters. Check it")
 
